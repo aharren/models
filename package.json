@@ -1,0 +1,6 @@
+{
+  "type": "commonjs",
+  "dependencies": {
+    "@jscad/cli": "2.3.6"
+  }
+}
