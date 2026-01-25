@@ -1,26 +1,28 @@
-# Models
+# Parametric 3D Models
 
-JSCAD-based 3D models.
+Parametric 3D models using JavaScript and [JSCAD](https://github.com/jscad/OpenJSCAD.org).
 
 ## Installation
 
-Just clone the Git repository and install dependencies via `npm`:
+Clone the Git repository and install dependencies via [Node](https://nodejs.org)'s `npm`:
 
 ```
-git clone https://github.com/aharren/models.git
-cd models
+git clone https://github.com/aharren/parametric-3d-models.git
+cd parametric-3d-models
 npm install
 ```
 
 ## Editing
 
-Visual Studio Code + JSCAD Preview extension.
+Use [Visual Studio Code](https://code.visualstudio.com) and the [JSCAD Preview extension](https://marketplace.visualstudio.com/items?itemName=codingwell-net.codingwell-vscode-jscad). A preview of a model can be opened via the "Preview JSCAD Model" command, available in the command palette or context menu of the model file. Whenever the mode file is saved, the preview will update.
+
+![](.readme/vscode-editor-preview-0.png)
 
 ## STL Creation
 
-Just run `jscad` and pass the name of the model file.
+Run the `model-to-stla` script and pass the name of the model file to create an STL text file from the model.
 
 Example:
 ```
-./jscad models/box/box.js
+./model-to-stla models/box/box.js
 ```
