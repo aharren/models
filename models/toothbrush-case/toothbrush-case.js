@@ -65,4 +65,4 @@ const main = (params) => {
   ];
 }
 
-module.exports = { ...withPreviewVisuals(main) };
+module.exports = { ...withPreviewVisuals({}, main) };

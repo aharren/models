@@ -11,4 +11,4 @@ const main = (params) => {
   return box;
 }
 
-module.exports = { ...withPreviewVisuals(main) };
+module.exports = { ...withPreviewVisuals({}, main) };
