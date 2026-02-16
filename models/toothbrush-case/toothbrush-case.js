@@ -6,7 +6,7 @@ const { subtract, union } = require('@jscad/modeling').booleans;
 const { degToRad } = require('@jscad/modeling').utils;
 
 const { openBox } = require('../../lib/boxes');
-const { withPreviewVisuals } = require('../../lib/visuals');
+const preview = require('../../lib/preview');
 
 const main = (params) => {
   const wallThickness = 2;
@@ -65,4 +65,4 @@ const main = (params) => {
   ];
 }
 
-module.exports = { ...withPreviewVisuals({}, main) };
+module.exports = { ...preview.main({}, main) };

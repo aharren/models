@@ -5,7 +5,7 @@ const { cylinder, cuboid } = require('@jscad/modeling').primitives;
 const { subtract, union } = require('@jscad/modeling').booleans;
 
 const { openBox, lid } = require('../../lib/boxes');
-const { withPreviewVisuals } = require('../../lib/visuals');
+const preview = require('../../lib/preview');
 
 const at = (pos, obj) => {
   // align corner of object relative to [0,0,0]
@@ -94,4 +94,4 @@ const main = (params) => {
   ];
 }
 
-module.exports = { ...withPreviewVisuals({}, main) };
+module.exports = { ...preview.main({}, main) };

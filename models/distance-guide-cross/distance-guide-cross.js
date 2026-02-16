@@ -5,7 +5,7 @@ const { union } = require('@jscad/modeling').booleans;
 const { align, rotateZ } = require('@jscad/modeling').transforms;
 const { degToRad } = require('@jscad/modeling/src').utils;
 
-const { withPreviewVisuals } = require('../../lib/visuals');
+const preview = require('../../lib/preview');
 
 const main = (params) => {
   const side1 = { length: 15, width: 2 };
@@ -23,4 +23,4 @@ const main = (params) => {
   return align({}, model);
 }
 
-module.exports = { ...withPreviewVisuals({ xRay: false }, main) };
+module.exports = { ...preview.main({ xRay: false }, main) };

@@ -4,7 +4,7 @@ const { colorize, colorNameToRgb } = require('@jscad/modeling').colors;
 const { mirrorX, mirrorY, rotateX } = require('@jscad/modeling').transforms;
 const { measureDimensions } = require('@jscad/modeling').measurements;
 
-const { withPreviewVisuals } = require('../../lib/visuals');
+const preview = require('../../lib/preview');
 
 const OBJECT_BALL = 'ball';
 const OBJECT_ENCLOSING = 'enclosing';
@@ -142,4 +142,4 @@ const main = (params) => {
   ];
 }
 
-module.exports = { ...withPreviewVisuals({}, main), getParameterDefinitions };
+module.exports = { ...preview.main({}, main), getParameterDefinitions };

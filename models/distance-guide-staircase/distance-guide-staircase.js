@@ -4,7 +4,7 @@ const { cuboid } = require('@jscad/modeling').primitives;
 const { union } = require('@jscad/modeling').booleans;
 const { align } = require('@jscad/modeling').transforms;
 
-const { withPreviewVisuals } = require('../../lib/visuals');
+const preview = require('../../lib/preview');
 
 const main = (params) => {
   const count = 10;
@@ -24,4 +24,4 @@ const main = (params) => {
   return align({}, model);
 }
 
-module.exports = { ...withPreviewVisuals({ xRay: false }, main) };
+module.exports = { ...preview.main({ xRay: false }, main) };
