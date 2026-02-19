@@ -1,6 +1,5 @@
 'use strict';
 
-const { align, translate } = require('@jscad/modeling').transforms;
 const { cylinder, cuboid } = require('@jscad/modeling').primitives;
 const { subtract, union } = require('@jscad/modeling').booleans;
 
@@ -85,10 +84,7 @@ const main = (params) => {
     return grid.center(model);
   };
 
-  return [
-    translate([0, -10, 0], align({ modes: ['none', 'max', 'none'] }, enclosureLid())),
-    translate([0, 10, 0], align({ modes: ['none', 'min', 'none'] }, enclosureBox())),
-  ];
+  return grid.distributeY(20, enclosureLid(), enclosureBox());
 }
 
 module.exports = { ...preview.main({}, main) };
