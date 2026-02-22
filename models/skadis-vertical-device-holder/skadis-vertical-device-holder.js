@@ -1,8 +1,10 @@
 'use strict';
 
-const { cuboid, cylinder } = require('@jscad/modeling').primitives;
+const { cuboid } = require('@jscad/modeling').primitives;
 const { union, subtract } = require('@jscad/modeling').booleans;
-const { rotateX } = require('@jscad/modeling').transforms;
+const { align } = require('@jscad/modeling').transforms;
+
+const hooks = require('../lib/skadis-hooks');
 
 const grid = require('../../lib/grid');
 const preview = require('../../lib/preview');
@@ -65,36 +67,14 @@ const main = (params) => {
     return union(objects);
   };
 
-  const hooks = () => {
-    const height = 11;
-    const depth = 5.4;
-    const width = 4.9;
-    const thickness = 6;
-    const distanceX = 40;
-    const distanceZ = 20;
-
-    const hook = union(
-      grid.at([0, depth, 0], cuboid({ size: [width, thickness, height] })),
-      grid.at([0, 0, height - thickness / 2], cuboid({ size: [width, depth, thickness / 2] })),
-      grid.at([0, 0, height - thickness], rotateX(Math.PI / 2, cylinder({ radius: width / 2, height: depth })))
-    );
-    const objects = [];
-    const y = shellOuterSize[1] - wallThickness
-    const row1Z = shellOuterSize[2] - wallThickness - height;
-    objects.push(grid.at([shellInnerSize[0] / 2 - width / 2, y, row1Z], hook));
-    objects.push(grid.at([shellInnerSize[0] / 2 - width / 2 - distanceX, y, row1Z], hook));
-    objects.push(grid.at([shellInnerSize[0] / 2 - width / 2 + distanceX, y, row1Z], hook));
-    const row2Z = row1Z - distanceZ;
-    objects.push(grid.at([shellInnerSize[0] / 2 - width / 2 - distanceX / 2, y, row2Z], hook));
-    objects.push(grid.at([shellInnerSize[0] / 2 - width / 2 + distanceX / 2, y, row2Z], hook));
-    return objects;
-  };
-
-  const model = union(
+  const shellWithInnerBrackets = union(
     shell(),
     innerBracketsX(),
-    innerBracketsY(),
-    hooks()
+    innerBracketsY()
+  );
+  const model = union(
+    align({ modes: ['center', 'max', 'max'] }, shellWithInnerBrackets),
+    align({ modes: ['center', 'min', 'max'] }, hooks.grid(shellOuterSize[0], shellOuterSize[1]))
   );
   return grid.center(model);
 }
