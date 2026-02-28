@@ -38,8 +38,8 @@ const hookGrid = (width, height, mode = 0, symmetric = true) => {
   const objects = [];
   const hook = singleHook();
   const distance = sizes.grid.distance;
-  const maxHeight = height - sizes.hook.height;
-  const maxWidth = width - sizes.hook.width;
+  const maxHeight = Math.max(height - sizes.hook.height, sizes.hook.height);
+  const maxWidth = Math.max(width - sizes.hook.width, sizes.hook.width);
   const y = 0;
   mode %= 2;
   for (let z = 0; z < maxHeight; z += distance / 2) {
